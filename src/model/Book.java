@@ -38,8 +38,8 @@ public class Book {
 	public int getAuthor_id() {
 		return author_id;
 	}
-	public void setAuthor_id(int author_id) {
-		this.author_id = author_id;
+	public void setAuthor_id(int author_id2) {
+		this.author_id = author_id2;
 	}
 	@Override
 	public String toString() {

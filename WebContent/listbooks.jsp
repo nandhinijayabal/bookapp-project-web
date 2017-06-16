@@ -54,6 +54,6 @@ for (Book b: booklist)
 {
 	out.println(b.getId() +"-"+ b.getName());
 }
-}
+
 %>
 </html>
