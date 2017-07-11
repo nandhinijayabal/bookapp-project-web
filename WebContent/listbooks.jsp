@@ -1,59 +1,79 @@
 <!DOCTYPE html>
+
+
+<%@page import="dao.BookDAO"%>
+<%@page import="dao.UserDAO"%>
+<%@page import="model.user"%>
+<%@page import="model.Order"%>
+
 <%@page import="model.Book"%>
 <%@page import="java.util.List"%>
-<%@page import="dao.BookDAO"%>
+
 <html>
 <head>
 
-<title>List Books</title>
+<title>List books</title>
 </head>
 <body>
-	<h3>List Books</h3>
+<%
+user user = (user) session.getAttribute("Logged_In_User");
+//out.println("User:"+ user);
+if (user == null ) {
+	
+	response.sendRedirect("login.html");
+	
+}
+else
+{
+%>
+Welcome<%=user.getName() %>  ( <a href="LogoutServlet" > Logout </a>)
+<h3>list books</h3>
+<table border ="1">
+<tbody>
+<%
 
-	<table border="1">
-		<thead>
+BookDAO bookDAO =new BookDAO();
+List<Book>bookList = bookDAO.listbook();
+//out.println("Books:"+bookList);
+%><table border="1">
+	<thead>
 			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Price</th>
-				<th>Published Date</th>
-				<th>Author Name</th>
-		</thead>
-		<tbody>
-			<tr>
-				<td>1</td>
-				<td>java</td>
-				<td>Rs.200</td>
-				<td>2017-06-13</td>
-				<td>Suresh</td>
+				<th>id</th>
+				<th>name</th>
+				<th>price</th>
+				<th>published_date</th>
+				<th>AuthorName</th>
+				
 			</tr>
-
-			<tr>
-				<td>2</td>
-				<td>MySQL</td>
-				<td>Rs.300</td>
-				<td>2017-06-12</td>
-				<td>Suresh</td>
-			</tr>
-
-		</tbody>
+		</thead>	
 		
+	<%
+		for (Book b : bookList) {
+			out.println("<tr>");
+			out.println("<td>" + b.getId() + "</td>");
+			out.println("<td>" + b.getName() + "</td>");
+			out.println("<td>" + b.getPrice() + "</td>");
+			out.println("<td>" + b.getPub_date() + "</td>");
+			out.println("<td>" + b.getAuthor_id() + "</td>");
 
-	</table>
+			out.println("</tr>");
+		}
+	
+	
+	%>
+		</tbody>
+		</table>
+
+
+</tbody>
+</table>
+
+
+<% }%>
+
+<a href="orderbook.jsp"> Add Order</a>
 </body>
 
-		<%
-		
-		BookDAO bookDAO =new BookDAO();
-		List<Book>booklist = bookDAO.listbook();
-		out.println("Books:"+ booklist);
-		
-		%>
-<%
-for (Book b: booklist)
-{
-	out.println(b.getId() +"-"+ b.getName());
-}
-
-%>
 </html>
+
+

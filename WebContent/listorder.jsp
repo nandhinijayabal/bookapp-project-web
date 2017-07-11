@@ -20,9 +20,11 @@
 				<tr>
 					<th>id</th>
 					<th>user_id</th>
+					<th>userName</th>
 					<th>book_id</th>
+					<th>bookName</th>
 					<th>quantity</th>
-					<th>satus</th>
+					<th>status</th>
 					<th>Ordered_date</th>
 
 
@@ -34,7 +36,9 @@
 						out.println("<tr>");
 						out.println("<td>" + b.getId() + "</td>");
 						out.println("<td>" + b.getUser_id() + "</td>");
+						out.println("<td>" + b.getUserName() + "</td>");
 						out.println("<td>" + b.getBook_id() + "</td>");
+						out.println("<td>" + b.getBookName() + "</td>");
 						out.println("<td>" + b.getQuantity() + "</td>");
 						out.println("<td>" + b.getStatus() + "</td>");
 						out.println("<td>" + b.getOrdered_date() + "</td>");
