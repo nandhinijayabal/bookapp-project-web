@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.UserDAO;
 import model.user;
@@ -31,6 +32,8 @@ public class loginservlet extends HttpServlet {
 		out.println("password="+ password);
 
 		UserDAO userDAO =new UserDAO();
+	
+		
 		
 		try {
 			user u = userDAO.login(email,password);
@@ -43,9 +46,13 @@ public class loginservlet extends HttpServlet {
 			}
 			else
 				
-			{
-				response.sendRedirect("listbooks.html");
-				response.sendRedirect("success.html");
+				{
+				
+				HttpSession session = request.getSession();
+			    session.setAttribute("Logged_In_User", u);
+
+				response.sendRedirect("listbooks.jsp");
+			//	response.sendRedirect("success.html");
 			}
 			
 			

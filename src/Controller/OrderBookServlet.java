@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,6 +41,8 @@ public class OrderBookServlet extends HttpServlet {
 			order.setUser_id(userid1);
 			order.setBook_id(bookid1);
 			order.setQuantity(quantity1);
+			order.setOrder_date(LocalDate.now());
+			order.setStatus("ordered");
 	        out.println(order);
 
 	        
@@ -52,7 +55,7 @@ public class OrderBookServlet extends HttpServlet {
 	        
 	        
 	        
-	        response.sendRedirect("orderbook.jsp");
+	        response.sendRedirect("listorder.jsp");
 	    
 	        
 	        
